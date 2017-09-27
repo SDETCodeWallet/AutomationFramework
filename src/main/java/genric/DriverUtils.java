@@ -57,10 +57,11 @@ public class DriverUtils {
 	public void getUrl(String url) {
 		driver.get(url);
 	}
-	
-//	public string getAttributeValue() {
-//		
-//	}
+
+	public String getAttributeValue(WebElement we, String attributeName) {
+		String attributeValue = we.getAttribute(attributeName);
+		return attributeValue;
+	}
 
 	public void getTextofAllLinks(List<WebElement> listWebElement) {
 		int totalLinks = listWebElement.size();
@@ -71,14 +72,14 @@ public class DriverUtils {
 		}
 
 	}
-	
+
 	public void clickOnAllLinks(List<WebElement> listWebElement) {
-		int totalLinks=listWebElement.size();
-		for(i=0;i<=totalLinks-1;i++) {
-			we=listWebElement.get(i);
-		    clickOnWebElement(we);
-		    navigateBack();
-		     totalLinks=listWebElement.size();
+		int totalLinks = listWebElement.size();
+		for (i = 0; i <= totalLinks - 1; i++) {
+			we = listWebElement.get(i);
+			clickOnWebElement(we);
+			navigateBack();
+			totalLinks = listWebElement.size();
 		}
 	}
 
