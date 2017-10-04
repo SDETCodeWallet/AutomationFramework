@@ -1,9 +1,16 @@
 package genric;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Test;
 
 public class DriverUtils {
 
@@ -12,6 +19,38 @@ public class DriverUtils {
 	private boolean blnFlag;
 	private String textValue;
 	private int i;
+	FileReader filereader;
+
+	public String browser = filereader.getPropertyValue("BrowserName");
+
+	public WebDriver getDriver() {
+		return driver;
+	}
+
+	public void setDriver(WebDriver driver) {
+		this.driver = driver;
+	}
+
+	public WebDriver launchApp() {
+
+		if (browser.equalsIgnoreCase("Chrome")) {
+			System.setProperty("webdriver.chrome.driver", filereader.getPropertyValue("ChromeExePath"));
+			setDriver(new ChromeDriver());
+		} else if (browser.equalsIgnoreCase("Internet")) {
+			System.out.println("insode");
+			System.setProperty("webdriver.ie.driver", filereader.getPropertyValue("IEExePath"));
+			setDriver(new InternetExplorerDriver());
+		} else if (browser.equalsIgnoreCase("Firefox")) {
+			System.setProperty("webdriver.gecko.driver", filereader.getPropertyValue("FireFoxExePath"));
+			setDriver(new FirefoxDriver());
+		} else if (browser.equalsIgnoreCase("Edge")) {
+			System.setProperty("webdriver.edge.driver", filereader.getPropertyValue("EdgeExePath"));
+			setDriver(new EdgeDriver());
+		}
+		getDriver().manage().timeouts().implicitlyWait(2000, TimeUnit.SECONDS);
+		getDriver().get(filereader.getPropertyValue("ApplicationUrl"));
+		return getDriver();
+	}
 
 	public boolean IsEnabled(WebElement we) {
 		blnFlag = we.isEnabled();
@@ -55,7 +94,7 @@ public class DriverUtils {
 	}
 
 	public void getUrl(String url) {
-		driver.get(url);
+		getDriver().get(url);
 	}
 
 	public String getAttributeValue(WebElement we, String attributeName) {
@@ -84,19 +123,27 @@ public class DriverUtils {
 	}
 
 	public void navigateBack() {
-		driver.navigate().back();
+		getDriver().navigate().back();
 	}
 
 	public void navigateForward() {
-		driver.navigate().forward();
+		getDriver().navigate().forward();
 	}
 
 	public void navigateRefresh() {
-		driver.navigate().refresh();
+		getDriver().navigate().refresh();
 	}
 
 	public void navigatetoUrl(String Url) {
-		driver.navigate().to(Url);
+		getDriver().navigate().to(Url);
+	}
+
+	public void quitBrowser() {
+		getDriver().quit();
+	}
+
+	public void closeBrowser() {
+		getDriver().close();
 	}
 
 }
