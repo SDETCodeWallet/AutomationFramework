@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 import genric.DriverUtils;
 
-public class BVTTestCases {
+public class BVTTestCases  {
 	
 	
 	public void loginUser () {

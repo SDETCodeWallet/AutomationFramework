@@ -1,20 +1,26 @@
 package applicaionPages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import genric.DriverUtils;
 import genric.baseTest;
 
-public class ApplicationBasePage {
+public class ApplicationBasePage extends DriverUtils {
+
+	public ApplicationBasePage(WebDriver driver) {
+		driver = super.getDriver();
+	}
 
 	@FindBy(xpath = "//img[@title='Flipkart']")
 	private WebElement appTitle;
-	
+
 	@FindBy(xpath = "//a[text()='Signup']")
 	private WebElement loginLink;
 
 	public void fn_ClickOnSignUpLink() {
-		
+
 	}
 
 }

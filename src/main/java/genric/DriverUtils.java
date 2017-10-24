@@ -1,16 +1,27 @@
 package genric;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
+
+import applicaionPages.ApplicationBasePage;
 
 public class DriverUtils {
 
@@ -31,7 +42,8 @@ public class DriverUtils {
 		this.driver = driver;
 	}
 
-	public WebDriver launchApp() {
+	@BeforeMethod
+	public ApplicationBasePage launchApp() {
 
 		if (browser.equalsIgnoreCase("Chrome")) {
 			System.setProperty("webdriver.chrome.driver", filereader.getPropertyValue("ChromeExePath"));
@@ -49,7 +61,12 @@ public class DriverUtils {
 		}
 		getDriver().manage().timeouts().implicitlyWait(2000, TimeUnit.SECONDS);
 		getDriver().get(filereader.getPropertyValue("ApplicationUrl"));
-		return getDriver();
+		ApplicationBasePage basePage = PageFactory.initElements(driver, ApplicationBasePage.class);
+		return basePage;
+	}
+
+	public WebDriver getWebDriver() {
+		return driver;
 	}
 
 	public boolean IsEnabled(WebElement we) {
@@ -132,6 +149,20 @@ public class DriverUtils {
 
 	public void navigateRefresh() {
 		getDriver().navigate().refresh();
+	}
+
+	public void switchToFrame(int frameIndex) {
+		driver.switchTo().frame(frameIndex);
+	}
+
+	public void takeScreenShot(File srcDestinationPath) {
+		EventFiringWebDriver eFiring = new EventFiringWebDriver(driver);
+		File srcImage = eFiring.getScreenshotAs(OutputType.FILE);
+		try {
+			FileUtils.copyFile(srcImage, srcDestinationPath);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void navigatetoUrl(String Url) {

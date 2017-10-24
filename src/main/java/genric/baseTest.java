@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeClass;
 
 import applicaionPages.ApplicationBasePage;
 
-public class baseTest {
+public class baseTest  {
 	
 	DriverUtils DriverFunctions;
 	ApplicationBasePage mainpage;
