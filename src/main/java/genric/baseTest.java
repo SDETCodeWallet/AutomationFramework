@@ -1,31 +1,53 @@
 package genric;
 
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import applicaionPages.ApplicationBasePage;
 
-public class baseTest  {
-	
-	DriverUtils DriverFunctions;
-	ApplicationBasePage mainpage;
-	
-	@BeforeClass
-	public void launchApp() {
-		DriverFunctions=new DriverUtils();
-		DriverFunctions.launchApp();
+public class baseTest extends basePage {
+ private WebDriver driver; 
+ 
+	@BeforeMethod
+	public ApplicationBasePage launchApp() {
+
+		if (FileReader.getPropertyValue("BrowserName").equalsIgnoreCase("Chrome")) {
+			System.setProperty("webdriver.chrome.driver", FileReader.getPropertyValue("ChromeExePath"));
+			driver = new ChromeDriver();
+		} else if (FileReader.getPropertyValue("BrowserName").equalsIgnoreCase("firefox")) {
+			System.setProperty("webdriver.gecko.driver", FileReader.getPropertyValue("FireFoxExePath"));
+			driver = new FirefoxDriver();
+		} else if (FileReader.getPropertyValue("BrowserName").equalsIgnoreCase("Internet")) {
+			System.setProperty("webdriver.ie.driver", FileReader.getPropertyValue("IEExePath"));
+			driver = new InternetExplorerDriver();
+		} else if (FileReader.getPropertyValue("BrowserName").equalsIgnoreCase("edge")) {
+			System.setProperty("webdriver.edge.driver", FileReader.getPropertyValue("EdgeExePath"));
+			driver = new EdgeDriver();
+		}
+		driver.manage().timeouts().implicitlyWait(2000, TimeUnit.SECONDS);
+		driver.get(FileReader.getPropertyValue("ApplicationUrl"));
+		ApplicationBasePage basePage = PageFactory.initElements(driver, ApplicationBasePage.class);
+		return basePage;
 	}
-	
-	public ApplicationBasePage ApplicationPage() {
-	 ApplicationBasePage basePage=PageFactory.initElements(DriverFunctions.getDriver(), ApplicationBasePage.class);
-	 return basePage;
+
+	@Test
+	public void test1() {
+		System.out.println("inside tes");
+
 	}
-	
-	
-	@AfterClass
-	public void tearDown() {
-		DriverFunctions.quitBrowser();;
+
+	@AfterMethod
+	public void closeApp() {
+
 	}
 
 }

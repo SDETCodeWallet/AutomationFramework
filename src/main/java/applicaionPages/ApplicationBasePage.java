@@ -4,15 +4,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import genric.DriverUtils;
+import genric.basePage;
 import genric.baseTest;
 
-public class ApplicationBasePage extends DriverUtils {
+public class ApplicationBasePage extends basePage {
 
-	public ApplicationBasePage(WebDriver driver) {
-		driver = super.getDriver();
-	}
-
+	
 	@FindBy(xpath = "//img[@title='Flipkart']")
 	private WebElement appTitle;
 

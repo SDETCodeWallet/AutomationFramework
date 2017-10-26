@@ -1,38 +1,23 @@
 package genric;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
 
-import applicaionPages.ApplicationBasePage;
+public abstract class basePage {
 
-public class DriverUtils {
-
-	private WebDriver driver;
+	protected WebDriver driver;
 	private WebElement we;
 	private boolean blnFlag;
 	private String textValue;
 	private int i;
 	FileReader filereader;
-
-	public String browser = filereader.getPropertyValue("BrowserName");
 
 	public WebDriver getDriver() {
 		return driver;
@@ -40,33 +25,6 @@ public class DriverUtils {
 
 	public void setDriver(WebDriver driver) {
 		this.driver = driver;
-	}
-
-	@BeforeMethod
-	public ApplicationBasePage launchApp() {
-
-		if (browser.equalsIgnoreCase("Chrome")) {
-			System.setProperty("webdriver.chrome.driver", filereader.getPropertyValue("ChromeExePath"));
-			setDriver(new ChromeDriver());
-		} else if (browser.equalsIgnoreCase("Internet")) {
-			System.out.println("insode");
-			System.setProperty("webdriver.ie.driver", filereader.getPropertyValue("IEExePath"));
-			setDriver(new InternetExplorerDriver());
-		} else if (browser.equalsIgnoreCase("Firefox")) {
-			System.setProperty("webdriver.gecko.driver", filereader.getPropertyValue("FireFoxExePath"));
-			setDriver(new FirefoxDriver());
-		} else if (browser.equalsIgnoreCase("Edge")) {
-			System.setProperty("webdriver.edge.driver", filereader.getPropertyValue("EdgeExePath"));
-			setDriver(new EdgeDriver());
-		}
-		getDriver().manage().timeouts().implicitlyWait(2000, TimeUnit.SECONDS);
-		getDriver().get(filereader.getPropertyValue("ApplicationUrl"));
-		ApplicationBasePage basePage = PageFactory.initElements(driver, ApplicationBasePage.class);
-		return basePage;
-	}
-
-	public WebDriver getWebDriver() {
-		return driver;
 	}
 
 	public boolean IsEnabled(WebElement we) {
@@ -156,8 +114,8 @@ public class DriverUtils {
 	}
 
 	public void takeScreenShot(File srcDestinationPath) {
-		EventFiringWebDriver eFiring = new EventFiringWebDriver(driver);
-		File srcImage = eFiring.getScreenshotAs(OutputType.FILE);
+		EventFiringWebDriver eFiringDriver = new EventFiringWebDriver(driver);
+		File srcImage = eFiringDriver.getScreenshotAs(OutputType.FILE);
 		try {
 			FileUtils.copyFile(srcImage, srcDestinationPath);
 		} catch (IOException e) {
