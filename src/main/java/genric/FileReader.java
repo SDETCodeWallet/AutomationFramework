@@ -45,7 +45,7 @@ class FileReader {
 			XSSFWorkbook book = new XSSFWorkbook(fileIPS);
 			XSSFSheet sht = book.getSheet("Summary");
 			int cellValue = (int) sht.getRow(1).getCell(0).getNumericCellValue();
-			
+			System.out.println("inside");
 
 		} else if (extension.equalsIgnoreCase("xls")) {
 			System.out.println("inside");
