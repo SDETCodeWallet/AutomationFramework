@@ -49,6 +49,7 @@ class FileReader {
 
 		} else if (extension.equalsIgnoreCase("xls")) {
 			HSSFWorkbook book = new HSSFWorkbook(fileIPS);
+			System.out.println("test");
 			HSSFSheet sht = book.getSheet("Summary");
 			int cellValue = (int) sht.getRow(1).getCell(1).getNumericCellValue();
 			
