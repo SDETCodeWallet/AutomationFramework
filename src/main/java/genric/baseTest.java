@@ -2,7 +2,6 @@ package genric;
 
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -10,16 +9,13 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import applicaionPages.ApplicationBasePage;
 
 public class baseTest extends basePage {
- private WebDriver driver; 
- 
+
 	@BeforeMethod
 	public ApplicationBasePage launchApp() {
-
 		if (FileReader.getPropertyValue("BrowserName").equalsIgnoreCase("Chrome")) {
 			System.setProperty("webdriver.chrome.driver", FileReader.getPropertyValue("ChromeExePath"));
 			driver = new ChromeDriver();
@@ -39,15 +35,9 @@ public class baseTest extends basePage {
 		return basePage;
 	}
 
-	@Test
-	public void test1() {
-		System.out.println("inside tes");
-
-	}
-
 	@AfterMethod
-	public void closeApp() {
-
+	public void ehgjh() {
+		System.out.println("after mehthod");
 	}
 
 }

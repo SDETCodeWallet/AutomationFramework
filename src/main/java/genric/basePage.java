@@ -10,7 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
-public abstract class basePage {
+public  class basePage {
 
 	protected WebDriver driver;
 	private WebElement we;
@@ -18,7 +18,7 @@ public abstract class basePage {
 	private String textValue;
 	private int i;
 	FileReader filereader;
-
+	
 	public WebDriver getDriver() {
 		return driver;
 	}
