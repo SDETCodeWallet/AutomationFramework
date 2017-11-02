@@ -2,24 +2,16 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="2690" started-at="2017-10-26T09:49:52Z" finished-at="2017-10-26T09:49:55Z">
+  <suite name="Default suite" duration-ms="87" started-at="2017-11-02T15:56:18Z" finished-at="2017-11-02T15:56:18Z">
     <groups>
     </groups>
-    <test name="Automation Framework" duration-ms="2690" started-at="2017-10-26T09:49:52Z" finished-at="2017-10-26T09:49:55Z">
-      <class name="webApplication.BVTTestCases">
-        <test-method status="PASS" signature="launchApp()[pri:0, instance:webApplication.BVTTestCases@4e9ba398]" name="launchApp" is-config="true" duration-ms="2671" started-at="2017-10-26T15:19:52Z" finished-at="2017-10-26T15:19:55Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- launchApp -->
-        <test-method status="PASS" signature="loginUser()[pri:0, instance:webApplication.BVTTestCases@4e9ba398]" name="loginUser" duration-ms="5" started-at="2017-10-26T15:19:55Z" finished-at="2017-10-26T15:19:55Z">
+    <test name="Default test" duration-ms="87" started-at="2017-11-02T15:56:18Z" finished-at="2017-11-02T15:56:18Z">
+      <class name="in.amazon.HomePageScript">
+        <test-method status="PASS" signature="loginUser()[pri:0, instance:in.amazon.HomePageScript@5b275dab]" name="loginUser" duration-ms="50" started-at="2017-11-02T21:26:18Z" finished-at="2017-11-02T21:26:18Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginUser -->
-        <test-method status="PASS" signature="ehgjh()[pri:0, instance:webApplication.BVTTestCases@4e9ba398]" name="ehgjh" is-config="true" duration-ms="0" started-at="2017-10-26T15:19:55Z" finished-at="2017-10-26T15:19:55Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- ehgjh -->
-      </class> <!-- webApplication.BVTTestCases -->
-    </test> <!-- Automation Framework -->
-  </suite> <!-- Suite -->
+      </class> <!-- in.amazon.HomePageScript -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>

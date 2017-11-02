@@ -10,17 +10,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
-public  class basePage {
+public class WebDriverUtils {
 
-	protected WebDriver driver;
+	public static WebDriver driver;
 	private WebElement we;
 	private boolean blnFlag;
 	private String textValue;
 	private int i;
-	FileReader filereader;
-	
+
 	public WebDriver getDriver() {
 		return driver;
+	}
+
+	public WebDriverUtils(WebDriver driver) {
+		this.driver = driver;
 	}
 
 	public void setDriver(WebDriver driver) {
@@ -52,7 +55,7 @@ public  class basePage {
 
 	}
 
-	public void senkeys(WebElement we, String input) {
+	public void sendkeys(WebElement we, String input) {
 		blnFlag = IsDisplayed(we);
 		if (blnFlag = true) {
 			we.clear();
@@ -78,11 +81,8 @@ public  class basePage {
 	}
 
 	public void getTextofAllLinks(List<WebElement> listWebElement) {
-		int totalLinks = listWebElement.size();
-
-		for (i = 0; i <= totalLinks - 1; i++) {
-			we = listWebElement.get(i);
-			System.out.println(we.getText());
+		for (WebElement we : listWebElement) {
+			System.out.println(getText(we));
 		}
 
 	}

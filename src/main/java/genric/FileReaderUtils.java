@@ -11,7 +11,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-class FileReader {
+class FileReaderUtils {
 
 	public static String getPropertyValue(String name) {
 		FileInputStream inputFile = null;
@@ -33,7 +33,7 @@ class FileReader {
 		return value;
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main1(String[] args) throws IOException {
 
 		String filePath = "C:\\Users\\shubhamg\\Desktop\\Sales Center\\AutoBase_Timesheet.xls";
 		String[] excelFile = filePath.split("\\.");

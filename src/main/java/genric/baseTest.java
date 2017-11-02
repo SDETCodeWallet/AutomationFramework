@@ -2,6 +2,7 @@ package genric;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -9,33 +10,37 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-import applicaionPages.ApplicationBasePage;
+import applicaionPages.homePage;
 
-public class baseTest extends basePage {
+public class baseTest extends homePage implements Constants {
 
-	@BeforeMethod
-	public ApplicationBasePage launchApp() {
-		if (FileReader.getPropertyValue("BrowserName").equalsIgnoreCase("Chrome")) {
-			System.setProperty("webdriver.chrome.driver", FileReader.getPropertyValue("ChromeExePath"));
+	public baseTest(WebDriver driver) {
+		super(driver);
+	}
+
+	public homePage launchApp() {
+		if (BROWSERNAME.equalsIgnoreCase("Chrome")) {
+			System.setProperty("webdriver.chrome.driver", CHROMEEXE);
 			driver = new ChromeDriver();
-		} else if (FileReader.getPropertyValue("BrowserName").equalsIgnoreCase("firefox")) {
-			System.setProperty("webdriver.gecko.driver", FileReader.getPropertyValue("FireFoxExePath"));
+		} else if (BROWSERNAME.equalsIgnoreCase("firefox")) {
+			System.setProperty("webdriver.gecko.driver", FIREFOXEXE);
 			driver = new FirefoxDriver();
-		} else if (FileReader.getPropertyValue("BrowserName").equalsIgnoreCase("Internet")) {
-			System.setProperty("webdriver.ie.driver", FileReader.getPropertyValue("IEExePath"));
+		} else if (BROWSERNAME.equalsIgnoreCase("Internet")) {
+			System.out.println("in");
+			System.setProperty("webdriver.ie.driver", IEEXE);
 			driver = new InternetExplorerDriver();
-		} else if (FileReader.getPropertyValue("BrowserName").equalsIgnoreCase("edge")) {
-			System.setProperty("webdriver.edge.driver", FileReader.getPropertyValue("EdgeExePath"));
+		} else if (BROWSERNAME.equalsIgnoreCase("edge")) {
+			System.setProperty("webdriver.edge.driver", EDGEEXE);
 			driver = new EdgeDriver();
 		}
 		driver.manage().timeouts().implicitlyWait(2000, TimeUnit.SECONDS);
-		driver.get(FileReader.getPropertyValue("ApplicationUrl"));
-		ApplicationBasePage basePage = PageFactory.initElements(driver, ApplicationBasePage.class);
+		driver.get(APPLICATIONURL);
+		homePage basePage = PageFactory.initElements(driver, homePage.class);
 		return basePage;
 	}
 
-	@AfterMethod
 	public void ehgjh() {
 		System.out.println("after mehthod");
 	}
