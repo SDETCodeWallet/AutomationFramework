@@ -34,11 +34,9 @@ class FileReaderUtils {
 	}
 
 	public static void main1(String[] args) throws IOException {
-
-		String filePath = "C:\\Users\\shubhamg\\Desktop\\Sales Center\\AutoBase_Timesheet.xls";
-		String[] excelFile = filePath.split("\\.");
+		String[] excelFile = Constants.excelTestFilePath.split("\\.");
 		String extension = excelFile[1];
-		File excelFilePath = new File(filePath);
+		File excelFilePath = new File(Constants.excelTestFilePath);
 
 		FileInputStream fileIPS = new FileInputStream(excelFilePath);
 		if (extension.equalsIgnoreCase("xlxs")) {

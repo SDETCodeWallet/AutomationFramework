@@ -9,8 +9,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import applicaionPages.homePage;
 
@@ -20,10 +18,12 @@ public class baseTest extends homePage implements Constants {
 		super(driver);
 	}
 
-	public homePage launchApp() {
+	public static void main(String[] args) {
 		if (BROWSERNAME.equalsIgnoreCase("Chrome")) {
 			System.setProperty("webdriver.chrome.driver", CHROMEEXE);
-			driver = new ChromeDriver();
+			ChromeDriver driver = new ChromeDriver();
+			driver.close();
+			
 		} else if (BROWSERNAME.equalsIgnoreCase("firefox")) {
 			System.setProperty("webdriver.gecko.driver", FIREFOXEXE);
 			driver = new FirefoxDriver();
@@ -38,11 +38,12 @@ public class baseTest extends homePage implements Constants {
 		driver.manage().timeouts().implicitlyWait(2000, TimeUnit.SECONDS);
 		driver.get(APPLICATIONURL);
 		homePage basePage = PageFactory.initElements(driver, homePage.class);
-		return basePage;
+
 	}
 
-	public void ehgjh() {
-		System.out.println("after mehthod");
+	@AfterMethod
+	public void tearDown() {
+		closeBrowser();
 	}
 
 }

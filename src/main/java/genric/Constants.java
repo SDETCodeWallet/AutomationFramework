@@ -8,6 +8,7 @@ interface Constants {
 	 String FIREFOXEXE="Softwares//geckodriver.exe"; 
 	 String IEEXE="Softwares//IEDriverServer.exe";
 	 String EDGEEXE="Softwares//MicrosoftWebDriver.exe"; 
+	 String excelTestFilePath="src\\main\\resources\\Testdata.xlsx"; 
 			 
 			 
 	

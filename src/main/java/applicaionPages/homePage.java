@@ -23,14 +23,14 @@ public class homePage extends WebDriverUtils {
 	public void searchProduct() {
 		sendkeys(searchBox, "Motorola Phone");
 	}
-	
+
 	@FindBy(xpath = "//a[@id='nav-link-yourAccount']")
 	private WebElement signInBtn;
 
 	public SignInPage clickOnSignInBtn() {
 		clickOnWebElement(signInBtn);
-		SignInPage signInPage=PageFactory.initElements(driver, SignInPage.class);
-		return signInPage; 
+		SignInPage signInPage = PageFactory.initElements(driver, SignInPage.class);
+		return signInPage;
 	}
 
 }

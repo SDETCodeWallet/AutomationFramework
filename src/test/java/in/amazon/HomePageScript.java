@@ -12,7 +12,6 @@ class HomePageScript extends baseTest {
 
 	public HomePageScript(WebDriver driver) {
 		super(driver);
-		// TODO Auto-generated constructor stub
 	}
 
 	public static void afterMethod() {

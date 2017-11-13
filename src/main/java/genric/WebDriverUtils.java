@@ -132,7 +132,7 @@ public class WebDriverUtils {
 	}
 
 	public void closeBrowser() {
-		getDriver().close();
+		driver.close();
 	}
 
 }

@@ -18,7 +18,7 @@ public class SignInPage extends WebDriverUtils {
 	private WebElement userName;
 
 	public void fn_EnterUserName() {
-		sendkeys(userName, "");
+		sendkeys(userName, "shubhamg@360logica.com");
 
 	}
 
@@ -26,7 +26,7 @@ public class SignInPage extends WebDriverUtils {
 	private WebElement passWord;
 
 	public void fn_EnterPassword() {
-		sendkeys(passWord, "");
+		sendkeys(passWord, "shubhamg360");
 
 	}
 
