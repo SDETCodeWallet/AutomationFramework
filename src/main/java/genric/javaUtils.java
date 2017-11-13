@@ -5,13 +5,16 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.Random;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-class FileReaderUtils {
+import com.gargoylesoftware.htmlunit.javascript.host.dom.RadioNodeList;
+
+class javaUtils {
 
 	public static String getPropertyValue(String name) {
 		FileInputStream inputFile = null;
@@ -33,26 +36,17 @@ class FileReaderUtils {
 		return value;
 	}
 
-	public static void main1(String[] args) throws IOException {
-		String[] excelFile = Constants.excelTestFilePath.split("\\.");
-		String extension = excelFile[1];
-		File excelFilePath = new File(Constants.excelTestFilePath);
-
-		FileInputStream fileIPS = new FileInputStream(excelFilePath);
-		if (extension.equalsIgnoreCase("xlxs")) {
-			XSSFWorkbook book = new XSSFWorkbook(fileIPS);
-			XSSFSheet sht = book.getSheet("Summary");
-			int cellValue = (int) sht.getRow(1).getCell(0).getNumericCellValue();
-			
-
-		} else if (extension.equalsIgnoreCase("xls")) {
-			HSSFWorkbook book = new HSSFWorkbook(fileIPS);
-			System.out.println("test");
-			HSSFSheet sht = book.getSheet("Summary");
-			int cellValue = (int) sht.getRow(1).getCell(1).getNumericCellValue();
-			
+	public static String genrateRandomString(int charCount) {
+		String st1 = "ABCDEFGHIJKLMNOPRSTUVWXYZ";
+		StringBuilder stringBuilder = new StringBuilder(charCount);
+		Random random = new Random();
+		for (int i = 0; i <= charCount - 1; i++) {
+			stringBuilder.append(st1.charAt(random.nextInt(charCount)));
 		}
-
+		return stringBuilder.toString();
 	}
 
+	public static void main(String[] args) {
+		System.out.println(new javaUtils().genrateRandomString(15));
+	}
 }
