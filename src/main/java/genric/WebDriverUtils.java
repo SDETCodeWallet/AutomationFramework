@@ -90,6 +90,7 @@ public class WebDriverUtils {
 	public void navigateToUrl(String url) {
 		driver.navigate().to(url);
 	}
+
 	public void navigateBack() {
 		driver.navigate().back();
 	}
@@ -105,39 +106,40 @@ public class WebDriverUtils {
 	public void switchToFrame(int frameIndex) {
 		driver.switchTo().frame(frameIndex);
 	}
+
 	public void switchToFrame(WebElement we) {
 		driver.switchTo().frame(we);
 	}
-	
+
 	public void switchToFrame(String nameOrId) {
-		driver.switchTo().frame(nameOrId); 
+		driver.switchTo().frame(nameOrId);
 	}
+
 	public void switchToParentFrame() {
-		driver.switchTo().parentFrame();  
+		driver.switchTo().parentFrame();
 	}
-	
+
 	public void acceptPopUp() {
 		driver.switchTo().alert().accept();
 	}
-	
+
 	public void dismissPopUp() {
 		driver.switchTo().alert().dismiss();
 	}
-	
+
 	public String getPopUpText() {
-		return driver.switchTo().alert().getText(); 
+		return driver.switchTo().alert().getText();
 	}
-	
+
 	public void sendKeysInPopUp(String inputValue) {
 		driver.switchTo().alert().sendKeys(inputValue);
 	}
-
 
 	public static void takeScreenShot(String srcDestinationPath) {
 		EventFiringWebDriver eFiringDriver = new EventFiringWebDriver(driver);
 		File srcImage = eFiringDriver.getScreenshotAs(OutputType.FILE);
 		try {
-			FileUtils.copyFile(srcImage, new File(srcDestinationPath+"\\.png"));
+			FileUtils.copyFile(srcImage, new File(srcDestinationPath + "\\.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
