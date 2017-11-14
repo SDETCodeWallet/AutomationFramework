@@ -12,21 +12,13 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 public class WebDriverUtils {
 
-	public static WebDriver driver;
+	protected static WebDriver driver;
 	private WebElement we;
 	private boolean blnFlag;
 	private String textValue;
 	private int i;
 
-	public WebDriver getDriver() {
-		return driver;
-	}
-
 	public WebDriverUtils(WebDriver driver) {
-		this.driver = driver;
-	}
-
-	public void setDriver(WebDriver driver) {
 		this.driver = driver;
 	}
 
@@ -72,7 +64,7 @@ public class WebDriverUtils {
 	}
 
 	public void getUrl(String url) {
-		getDriver().get(url);
+		driver.get(url);
 	}
 
 	public String getAttributeValue(WebElement we, String attributeName) {
@@ -89,46 +81,70 @@ public class WebDriverUtils {
 
 	public void clickOnAllLinks(List<WebElement> listWebElement) {
 		int totalLinks = listWebElement.size();
-		for (i = 0; i <= totalLinks - 1; i++) {
-			we = listWebElement.get(i);
+		for (WebElement we : listWebElement) {
 			clickOnWebElement(we);
 			navigateBack();
-			totalLinks = listWebElement.size();
 		}
 	}
 
+	public void navigateToUrl(String url) {
+		driver.navigate().to(url);
+	}
 	public void navigateBack() {
-		getDriver().navigate().back();
+		driver.navigate().back();
 	}
 
 	public void navigateForward() {
-		getDriver().navigate().forward();
+		driver.navigate().forward();
 	}
 
 	public void navigateRefresh() {
-		getDriver().navigate().refresh();
+		driver.navigate().refresh();
 	}
 
 	public void switchToFrame(int frameIndex) {
 		driver.switchTo().frame(frameIndex);
 	}
+	public void switchToFrame(WebElement we) {
+		driver.switchTo().frame(we);
+	}
+	
+	public void switchToFrame(String nameOrId) {
+		driver.switchTo().frame(nameOrId); 
+	}
+	public void switchToParentFrame() {
+		driver.switchTo().parentFrame();  
+	}
+	
+	public void acceptPopUp() {
+		driver.switchTo().alert().accept();
+	}
+	
+	public void dismissPopUp() {
+		driver.switchTo().alert().dismiss();
+	}
+	
+	public String getPopUpText() {
+		return driver.switchTo().alert().getText(); 
+	}
+	
+	public void sendKeysInPopUp(String inputValue) {
+		driver.switchTo().alert().sendKeys(inputValue);
+	}
 
-	public void takeScreenShot(File srcDestinationPath) {
+
+	public static void takeScreenShot(String srcDestinationPath) {
 		EventFiringWebDriver eFiringDriver = new EventFiringWebDriver(driver);
 		File srcImage = eFiringDriver.getScreenshotAs(OutputType.FILE);
 		try {
-			FileUtils.copyFile(srcImage, srcDestinationPath);
+			FileUtils.copyFile(srcImage, new File(srcDestinationPath+"\\.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void navigatetoUrl(String Url) {
-		getDriver().navigate().to(Url);
-	}
-
 	public void quitBrowser() {
-		getDriver().quit();
+		driver.quit();
 	}
 
 	public void closeBrowser() {

@@ -9,41 +9,49 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import applicaionPages.homePage;
 
-public class baseTest extends homePage implements Constants {
+public class baseTest implements Constants {
+	WebDriverUtils test; 
 
-	public baseTest(WebDriver driver) {
-		super(driver);
-	}
-
-	public static void main(String[] args) {
+	@BeforeMethod
+	public homePage main() {
 		if (BROWSERNAME.equalsIgnoreCase("Chrome")) {
 			System.setProperty("webdriver.chrome.driver", CHROMEEXE);
-			ChromeDriver driver = new ChromeDriver();
-			driver.close();
-			
+			test.driver = new ChromeDriver();
 		} else if (BROWSERNAME.equalsIgnoreCase("firefox")) {
 			System.setProperty("webdriver.gecko.driver", FIREFOXEXE);
-			driver = new FirefoxDriver();
+			test.driver = new FirefoxDriver();
 		} else if (BROWSERNAME.equalsIgnoreCase("Internet")) {
 			System.out.println("in");
 			System.setProperty("webdriver.ie.driver", IEEXE);
-			driver = new InternetExplorerDriver();
+			test.driver = new InternetExplorerDriver();
 		} else if (BROWSERNAME.equalsIgnoreCase("edge")) {
 			System.setProperty("webdriver.edge.driver", EDGEEXE);
-			driver = new EdgeDriver();
+			test.driver = new EdgeDriver();
 		}
-		driver.manage().timeouts().implicitlyWait(2000, TimeUnit.SECONDS);
-		driver.get(APPLICATIONURL);
-		homePage basePage = PageFactory.initElements(driver, homePage.class);
+		test.driver.manage().timeouts().implicitlyWait(2000, TimeUnit.SECONDS);
+		test.driver.get(APPLICATIONURL);
+		WebDriverUtils.takeScreenShot("C:\\Users\\shubhamg\\git\\Gobol.in");
+		homePage basePage = PageFactory.initElements(test.driver, homePage.class);
+		
+		return basePage;
 
+	}
+
+	
+
+	@Test
+	public void test1() {
+		System.out.println("pass");
 	}
 
 	@AfterMethod
 	public void tearDown() {
-		closeBrowser();
+		test.driver.close();
 	}
 
 }

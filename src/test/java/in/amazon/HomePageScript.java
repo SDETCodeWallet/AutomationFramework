@@ -8,12 +8,11 @@ import org.testng.annotations.Test;
 import applicaionPages.homePage;
 import genric.baseTest;
 
-class HomePageScript extends baseTest {
+class HomePageScript  {
 
-	public HomePageScript(WebDriver driver) {
-		super(driver);
-	}
+	
 
+	
 	public static void afterMethod() {
 		
 	}
