@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
-  <test name="Test(failed)">
+<suite name="Failed suite [Default suite]">
+  <test name="Default test(failed)">
     <classes>
-      <class name="webApplication.BVTTestCases">
+      <class name="genric.baseTest">
         <methods>
-          <include name="launchApp"/>
-          <include name="loginUser"/>
+          <include name="main"/>
+          <include name="test1"/>
         </methods>
-      </class> <!-- webApplication.BVTTestCases -->
+      </class> <!-- genric.baseTest -->
     </classes>
-  </test> <!-- Test(failed) -->
-</suite> <!-- Failed suite [Suite] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->
