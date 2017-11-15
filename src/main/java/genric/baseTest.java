@@ -35,7 +35,8 @@ public class baseTest implements Constants {
 		}
 		test.driver.manage().timeouts().implicitlyWait(2000, TimeUnit.SECONDS);
 		test.driver.get(APPLICATIONURL);
-		WebDriverUtils.takeScreenShot("C:\\Users\\shubhamg\\git\\Gobol.in");
+		test.driver.manage().window().maximize();
+		WebDriverUtils.takeScreenShot("C:\\Users\\shubhamg\\git\\AutomationFramework");
 		homePage basePage = PageFactory.initElements(test.driver, homePage.class);
 		
 		return basePage;
