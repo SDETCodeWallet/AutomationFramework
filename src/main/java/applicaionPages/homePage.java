@@ -7,26 +7,30 @@ import org.openqa.selenium.support.PageFactory;
 
 import genric.WebDriverUtils;
 
-public class homePage extends WebDriverUtils {
+public class homePage {
 
-	public homePage(WebDriver driver) {
-		super(driver);
-
-	}
+	WebDriverUtils webDriverUtils;
 
 	@FindBy(xpath = "//input[@id='twotabsearchtextbox']")
 	private WebElement searchBox;
 
-	public void searchProduct() {
-		sendkeys(searchBox, "Motorola Phone");
+	public void searchProduct(String serachProduct) {
+		webDriverUtils.sendkeys(searchBox,serachProduct);
+	}
+	
+	@FindBy(xpath="//input[@type='submit']")
+	private WebElement searchBtn; 
+	
+	public void clickOnSerachBtn() {
+		webDriverUtils.clickOnWebElement(searchBtn);
 	}
 
 	@FindBy(xpath = "//a[@id='nav-link-yourAccount']")
 	private WebElement signInBtn;
 
 	public SignInPage clickOnSignInBtn() {
-		clickOnWebElement(signInBtn);
-		SignInPage signInPage = PageFactory.initElements(driver, SignInPage.class);
+		webDriverUtils.clickOnWebElement(signInBtn);
+		SignInPage signInPage = PageFactory.initElements(webDriverUtils.driver, SignInPage.class);
 		return signInPage;
 	}
 
