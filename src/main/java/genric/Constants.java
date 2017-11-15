@@ -1,6 +1,6 @@
 package genric;
 
-interface Constants {
+public interface Constants {
 	
 	 String BROWSERNAME="Chrome"; 
 	 String APPLICATIONURL="https://www.amazon.in/"; 

@@ -8,13 +8,15 @@ import org.testng.annotations.Test;
 import applicaionPages.homePage;
 import genric.baseTest;
 
-class HomePageScript  {
+class HomePageScript extends baseTest {
 
-	
-
-	
-	public static void afterMethod() {
+	@Test
+	public  void searchProduct() {
+	  homePage homePage= new baseTest().launchApp(); 
+	  homePage.searchProduct("Samsung");
+	  homePage.clickOnSerachBtn();
 		
+
 	}
 
 }

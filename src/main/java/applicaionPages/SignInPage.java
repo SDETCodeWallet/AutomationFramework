@@ -7,18 +7,15 @@ import org.testng.annotations.Test;
 
 import genric.WebDriverUtils;
 
-public class SignInPage extends WebDriverUtils {
+public class SignInPage {
 
-	public SignInPage(WebDriver driver) {
-		super(driver);
-
-	}
-
+	WebDriverUtils webDriverUtils;
+	
 	@FindBy(xpath = "//input[@id='ap_email']")
 	private WebElement userName;
 
 	public void fn_EnterUserName() {
-		sendkeys(userName, "shubhamg@360logica.com");
+		webDriverUtils.sendkeys(userName, "shubhamg@360logica.com");
 
 	}
 
@@ -26,7 +23,7 @@ public class SignInPage extends WebDriverUtils {
 	private WebElement passWord;
 
 	public void fn_EnterPassword() {
-		sendkeys(passWord, "shubhamg360");
+		webDriverUtils.sendkeys(passWord, "shubhamg360");
 
 	}
 
@@ -34,7 +31,7 @@ public class SignInPage extends WebDriverUtils {
 	private WebElement loginBtn;
 
 	public void fn_ClickOnLoginButton() {
-		clickOnWebElement(loginBtn);
+		webDriverUtils.clickOnWebElement(loginBtn);
 	}
 
 	public void userLogin() {

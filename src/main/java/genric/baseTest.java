@@ -2,7 +2,6 @@ package genric;
 
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -15,43 +14,36 @@ import org.testng.annotations.Test;
 import applicaionPages.homePage;
 
 public class baseTest implements Constants {
-	WebDriverUtils test; 
+	WebDriverUtils webUtils;
 
 	@BeforeMethod
-	public homePage main() {
+	public homePage launchApp() {
 		if (BROWSERNAME.equalsIgnoreCase("Chrome")) {
 			System.setProperty("webdriver.chrome.driver", CHROMEEXE);
-			test.driver = new ChromeDriver();
+			webUtils.driver = new ChromeDriver();
 		} else if (BROWSERNAME.equalsIgnoreCase("firefox")) {
 			System.setProperty("webdriver.gecko.driver", FIREFOXEXE);
-			test.driver = new FirefoxDriver();
+			webUtils.driver = new FirefoxDriver();
 		} else if (BROWSERNAME.equalsIgnoreCase("Internet")) {
 			System.out.println("in");
 			System.setProperty("webdriver.ie.driver", IEEXE);
-			test.driver = new InternetExplorerDriver();
+			webUtils.driver = new InternetExplorerDriver();
 		} else if (BROWSERNAME.equalsIgnoreCase("edge")) {
 			System.setProperty("webdriver.edge.driver", EDGEEXE);
-			test.driver = new EdgeDriver();
+			webUtils.driver = new EdgeDriver();
 		}
-		test.driver.manage().timeouts().implicitlyWait(2000, TimeUnit.SECONDS);
-		test.driver.get(APPLICATIONURL);
+		webUtils.driver.manage().timeouts().implicitlyWait(2000, TimeUnit.SECONDS);
+		webUtils.driver.get(APPLICATIONURL);
 		WebDriverUtils.takeScreenShot("C:\\Users\\shubhamg\\git\\Gobol.in");
-		homePage basePage = PageFactory.initElements(test.driver, homePage.class);
-		
+		homePage basePage = PageFactory.initElements(webUtils.driver, homePage.class);
+
 		return basePage;
 
 	}
 
-	
-
-	@Test
-	public void test1() {
-		System.out.println("pass");
-	}
-
 	@AfterMethod
 	public void tearDown() {
-		test.driver.close();
+		WebDriverUtils.driver.close();
 	}
 
 }

@@ -12,7 +12,7 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 public class WebDriverUtils {
 
-	protected static WebDriver driver;
+	public static WebDriver driver;
 	private WebElement we;
 	private boolean blnFlag;
 	private String textValue;
