@@ -28,6 +28,10 @@ public class homePage {
 	@FindBy(xpath = "//a[@id='nav-link-yourAccount']")
 	private WebElement signInBtn;
 
+	
+	public static void materCheck(){
+		System.out.println("Git commiyt");
+	}
 	public SignInPage clickOnSignInBtn() {
 		webDriverUtils.clickOnWebElement(signInBtn);
 		SignInPage signInPage = PageFactory.initElements(webDriverUtils.driver, SignInPage.class);
